@@ -10,6 +10,7 @@ Description      : myMatrix.cpp
 ----------------------------------------------------------------*/
 
 #include "myMatrix.h"
+#include "math.h"
 
 
 // Create Matrix with specified size
@@ -112,3 +113,81 @@ Matrix	zeros(int _rows, int _cols)
 
 	return Out;
 }
+
+Matrix	ones(int _rows, int _cols)
+{
+	Matrix Out = createMat(_rows, _cols);
+	initMat(Out, 1);
+
+	return Out;
+}
+
+Matrix	eye(int n)
+{
+	Matrix Out = createMat(n, n);
+	initMat(Out, 0);
+	for (int i = 0; i < Out.rows; i++){
+		int j = i;
+		Out.at[i][j] = 1;
+	}
+	
+	return Out;
+}
+
+// Copy matrix Elements from A to B
+void	copyVal(Matrix _A, Matrix _B)
+{
+	for (int i = 0; i < _A.cols; i++) {
+		for (int j = 0; j < _A.rows; j++) {
+			_B.at[i][j] = _A.at[i][j];//입력받은 Matrix A를 Matrix B 에 복사
+		}
+	}
+}
+
+Matrix	transpose(Matrix _A) {
+	Matrix Out = createMat(_A.cols, _A.rows);
+	for (int i = 0; i < Out.rows; i++) {
+		for (int j = 0; j < Out.cols; j++) {
+			Out.at[i][j] = _A.at[j][i];
+		}
+	}
+
+	return Out;
+}
+
+double norm2(Matrix _A){
+	double mag = 0;
+	double sum = 0;
+	float val = 0;
+	for (int i = 0; i < _A.rows; i++) {
+		sum += _A.at[i][0] * _A.at[i][0];
+	}
+	mag = sqrt(sum);
+	return mag;
+}
+
+Matrix multipleMat(Matrix _A, Matrix _B){
+	Matrix Out = zeros(_A.rows, _B.cols);
+	for (int i = 0; i < Out.rows; i++) {
+		for (int j = 0; j < Out.cols; j++) {
+			for(int k=0; k < _B.rows; k++)
+				Out.at[i][j] += _A.at[i][k]* _B.at[k][j];
+		}
+	}
+	return Out;
+}
+
+Matrix smultipleMat(double d, Matrix _A){
+	Matrix Out = zeros(_A.rows, _A.cols);
+	for (int i = 0; i < _A.rows; i++) {
+		for (int j = 0; j < _A.cols; j++) {
+			Out.at[i][j] = d * _A.at[i][j];
+		}
+	}
+	return Out;
+}
+
+/*double diagElement(Matrix U) {
+
+
+}*/

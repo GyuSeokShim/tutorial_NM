@@ -35,11 +35,6 @@ extern	Matrix	txt2Mat(std::string _filePath, std::string _fileName);
 //// Print matrix
 extern	void	printMat(Matrix _A, const char* _name);
 
-
-
-
-/// It is recommended to create the following functions.
-
 // initialization of Matrix elements
 extern	void	initMat(Matrix _A, double _val);
 
@@ -50,7 +45,10 @@ extern	Matrix	zeros(int _rows, int _cols);
 extern	Matrix	ones(int _rows, int _cols);
 
 // Create identity 
-extern	Matrix	eye(int _rows, int _cols);
+extern	Matrix	eye(int n);
+
+// Calculate size
+extern	int	size(Matrix _A);
 
 // Create Transpose matrix
 extern	Matrix	transpose(Matrix _A);
@@ -60,6 +58,15 @@ extern	Matrix	copyMat(Matrix _A);
 
 // Copy matrix Elements from A to B
 extern	void	copyVal(Matrix _A, Matrix _B);
+
+// Create a norm
+extern	double norm2(Matrix _A);
+
+// Multiply matrix
+extern	Matrix multipleMat(Matrix _A, Matrix _B);
+
+// Multiply matrix, scalar
+extern	Matrix smultipleMat(double d, Matrix _A);
 
 
 #endif
