@@ -14,6 +14,9 @@ Description      : myNM.h
 
 #include "myMatrix.h"
 
+//Now function added
+void gradient(double xin[]);
+
 // Matrix addition
 extern	Matrix	addMat(Matrix _A, Matrix _B);
 
